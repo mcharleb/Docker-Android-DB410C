@@ -1,0 +1,11 @@
+--- a/linux_android_board_support_package_vla.br.1.2.7-01010-8x16.0-4/DB410c_sync.sh	2016-06-22 10:49:56.000000000 -0700
++++ b/linux_android_board_support_package_vla.br.1.2.7-01010-8x16.0-4/DB410c_sync.sh	2017-11-20 21:58:48.005342451 -0800
+@@ -65,6 +65,8 @@
+ done
+ }
+ 
++# Bail out before build
++exit 0
+ 
+ #Main Script starts here
+ #Note: Check necessary program for installation

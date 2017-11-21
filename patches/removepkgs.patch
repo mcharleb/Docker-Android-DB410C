@@ -1,0 +1,285 @@
+--- APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/vendor/qcom/proprietary/common/config/device-vendor.mk.orig	2017-11-16 17:53:13.513367562 -0800
++++ APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/vendor/qcom/proprietary/common/config/device-vendor.mk	2017-11-16 19:06:43.744454316 -0800
+@@ -2452,7 +2452,7 @@
+ PRODUCT_PACKAGES += $(IMS_NEWARCH)
+ PRODUCT_PACKAGES += $(IMS_REGMGR)
+ PRODUCT_PACKAGES += $(INTERFACE_PERMISSIONS)
+-PRODUCT_PACKAGES += $(MM_AUDIO)
++#PRODUCT_PACKAGES += $(MM_AUDIO)
+ PRODUCT_PACKAGES += $(MM_CORE)
+ PRODUCT_PACKAGES += $(MM_GESTURES)
+ PRODUCT_PACKAGES += $(MM_GRAPHICS)
+@@ -2515,8 +2515,8 @@
+ PRODUCT_PACKAGES += $(LOG_SYSTEM)
+ 
+ ifneq ($(TARGET_SUPPORTS_WEARABLES), true)
+-PRODUCT_PACKAGES += $(ANTITHEFTDEMO)
+-PRODUCT_PACKAGES += $(FM)
++#PRODUCT_PACKAGES += $(ANTITHEFTDEMO)
++#PRODUCT_PACKAGES += $(FM)
+ #PRODUCT_PACKAGES += $(FM_DBG)
+ PRODUCT_PACKAGES += $(IQAGENT)
+ PRODUCT_PACKAGES += $(MDM_HELPER)
+@@ -2532,16 +2532,16 @@
+ PRODUCT_PACKAGES += $(MPQ_PLATFORM)
+ PRODUCT_PACKAGES += $(PERF)
+ PRODUCT_PACKAGES += $(PERMGR)
+-PRODUCT_PACKAGES += $(PLAYREADY)
++#PRODUCT_PACKAGES += $(PLAYREADY)
+ PRODUCT_PACKAGES += $(PROFILER)
+-PRODUCT_PACKAGES += $(QCHAT)
++#PRODUCT_PACKAGES += $(QCHAT)
+ PRODUCT_PACKAGES += $(QOSMGR)
+ PRODUCT_PACKAGES += $(QRD_APPS)
+ PRODUCT_PACKAGES += $(QUICKCHARGE)
+ PRODUCT_PACKAGES += $(SNAPDRAGON_SDK_DISPLAY)
+ PRODUCT_PACKAGES += $(TREPN)
+-PRODUCT_PACKAGES += $(TV_TUNER)
+-PRODUCT_PACKAGES += $(ULTRASOUND)
++#PRODUCT_PACKAGES += $(TV_TUNER)
++#PRODUCT_PACKAGES += $(ULTRASOUND)
+ PRODUCT_PACKAGES += $(WFD)
+ PRODUCT_PACKAGES += $(WIPOWER)
+ 
+@@ -2887,30 +2887,30 @@
+ SNAPDRAGON_SDK += com.qualcomm.snapdragon.sdk.face.FacialProcessingHelper
+ SNAPDRAGON_SDK += libfacialproc_jni
+ 
+-PRODUCT_PACKAGES_DEBUG += $(SNAPDRAGON_SDK)
++#PRODUCT_PACKAGES_DEBUG += $(SNAPDRAGON_SDK)
+ 
+-PRODUCT_PACKAGES_DEBUG += $(BT_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(CNE_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(CNESETTINGS_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(COMMON_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(DATA_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(DIAG_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(GPS_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(IMS_RCS_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(KERNEL_TEST_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(KS_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(MM_AUDIO_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(MM_CORE_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(QCOM_SETTINGS_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(QMI_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(SECUREMSM_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(SENSORS_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(TELEPHONY_APPS_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(THERMAL_ENGINE_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(TIME_SERVICES_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(WEBKIT_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(WLAN_DBG)
+-PRODUCT_PACKAGES_DEBUG += $(QUICKBOOT)
++#PRODUCT_PACKAGES_DEBUG += $(BT_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(CNE_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(CNESETTINGS_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(COMMON_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(DATA_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(DIAG_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(GPS_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(IMS_RCS_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(KERNEL_TEST_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(KS_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(MM_AUDIO_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(MM_CORE_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(QCOM_SETTINGS_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(QMI_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(SECUREMSM_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(SENSORS_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(TELEPHONY_APPS_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(THERMAL_ENGINE_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(TIME_SERVICES_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(WEBKIT_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(WLAN_DBG)
++#PRODUCT_PACKAGES_DEBUG += $(QUICKBOOT)
+ 
+ # Enable DSDS by default if QRD projects are enabled
+ ifneq ($(wildcard $(QC_PROP_ROOT)/qrdplus/Extension),)
+--- a/APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/device/qcom/common/base.mk
++++ b/APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/device/qcom/common/base.mk
+@@ -153,9 +153,9 @@ CURL := libcurl
+ CURL += curl
+ 
+ #CM
+-CM := CMFileManager
+-CM += Trebuchet
+-CM += Eleven
++#CM := CMFileManager
++#CM += Trebuchet
++#CM += Eleven
+ 
+ #DASH
+ DASH := libdashplayer
+@@ -186,9 +186,9 @@ EBTABLES += libebtc
+ FASTPOWERON := FastBoot
+ 
+ #FM
+-FM := qcom.fmradio
+-FM += libqcomfm_jni
+-FM += libfmjni
++#FM := qcom.fmradio
++#FM += libqcomfm_jni
++#FM += libfmjni
+ 
+ #GPS
+ GPS_HARDWARE := gps.conf
+@@ -227,7 +227,7 @@ INIT += init.qti.ims.sh
+ INIT += init.qcom.bt.sh
+ INIT += hsic.control.bt.sh
+ INIT += init.qcom.coex.sh
+-INIT += init.qcom.fm.sh
++#INIT += init.qcom.fm.sh
+ INIT += init.qcom.early_boot.sh
+ INIT += init.qcom.post_boot.sh
+ INIT += init.qcom.syspart_fixup.sh
+@@ -615,45 +615,47 @@ WLAN += pronto_wlan.ko
+ 
+ PRODUCT_PACKAGES := \
+     AccountAndSyncSettings \
+-    DeskClock \
+     AlarmProvider \
+     Bluetooth \
+-    Calculator \
+     Calendar \
+-    Camera \
+     CellBroadcastReceiver \
+     CertInstaller \
+     DrmProvider \
+     Email \
+-    Gallery2 \
+     LatinIME \
+     Mms \
+-    Music \
+     Phone \
+     Provision \
+     Protips \
+     QuickSearchBox \
+     Settings \
+     Sync \
+-    SystemUI \
+     Updater \
+     CalendarProvider \
+     SyncProvider \
+     IM \
++
++
++#   Camera \
++    Gallery2 \
++    Calculator \
++    DeskClock \
++    SystemUI \
++    Music \
+     VoiceDialer \
+     FM2 \
+     FMRadio \
+     FMRecord \
+     VideoEditor
+ 
+-
+ ifneq ($(TARGET_USES_AOSP),true)
+-PRODUCT_PACKAGES += \
+-       BluetoothExt \
+-       BTTestApp \
+-       HiddTestApp \
+-       BTLogKit \
+-       BTLogSave
++#PRODUCT_PACKAGES += \
++#       BluetoothExt \
++#       BTTestApp \
++#       HiddTestApp \
++#       BTLogKit \
++#       BTLogSave
++
+ endif
+ 
+ PRODUCT_PACKAGES += $(ALSA_HARDWARE)
+@@ -662,7 +664,7 @@ PRODUCT_PACKAGES += $(ANGLE)
+ PRODUCT_PACKAGES += $(APPOPS_POLICY)
+ PRODUCT_PACKAGES += $(AUDIO_HARDWARE)
+ PRODUCT_PACKAGES += $(AUDIO_POLICY)
+-PRODUCT_PACKAGES += $(TINY_ALSA_TEST_APPS)
++#PRODUCT_PACKAGES += $(TINY_ALSA_TEST_APPS)
+ PRODUCT_PACKAGES += $(AMPLOADER)
+ PRODUCT_PACKAGES += $(APPS)
+ PRODUCT_PACKAGES += $(BRCTL)
+@@ -682,7 +684,7 @@ PRODUCT_PACKAGES += $(E2FSPROGS)
+ PRODUCT_PACKAGES += $(EBTABLES)
+ PRODUCT_PACKAGES += $(EXTENDEDMEDIA_EXT)
+ PRODUCT_PACKAGES += $(FASTPOWERON)
+-PRODUCT_PACKAGES += $(FM)
++#PRODUCT_PACKAGES += $(FM)
+ PRODUCT_PACKAGES += $(GPS_HARDWARE)
+ PRODUCT_PACKAGES += $(HDMID)
+ PRODUCT_PACKAGES += $(HOSTAPD)
+@@ -714,7 +716,7 @@ PRODUCT_PACKAGES += $(LIBQDMETADATA)
+ PRODUCT_PACKAGES += $(LIBPOWER)
+ PRODUCT_PACKAGES += $(LOC_API)
+ PRODUCT_PACKAGES += $(MEDIA_PROFILES)
+-PRODUCT_PACKAGES += $(MM_AUDIO)
++#PRODUCT_PACKAGES += $(MM_AUDIO)
+ PRODUCT_PACKAGES += $(MM_CORE)
+ PRODUCT_PACKAGES += $(MM_VIDEO)
+ PRODUCT_PACKAGES += $(OPENCORE)
+@@ -723,7 +725,7 @@ PRODUCT_PACKAGES += $(PVOMX)
+ PRODUCT_PACKAGES += $(RF4CE)
+ PRODUCT_PACKAGES += $(SENSORS_HARDWARE)
+ PRODUCT_PACKAGES += $(SOFTAP)
+-PRODUCT_PACKAGES += $(STK)
++#PRODUCT_PACKAGES += $(STK)
+ PRODUCT_PACKAGES += $(STMLOG)
+ PRODUCT_PACKAGES += $(TSLIB_EXTERNAL)
+ PRODUCT_PACKAGES += $(QRGND)
+@@ -738,7 +740,7 @@ PRODUCT_PACKAGES += $(WLAN)
+ PRODUCT_PACKAGES += $(IMS_EXT)
+ 
+ # Live Wallpapers
+-PRODUCT_PACKAGES += \
++#PRODUCT_PACKAGES += \
+         LiveWallpapers \
+         LiveWallpapersPicker \
+         VisualizationWallpapers \
+--- a/APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/device/qcom/msm8916_64/msm8916_64.mk
++++ b/APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/device/qcom/msm8916_64/msm8916_64.mk
+@@ -7,7 +7,9 @@ TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+ DEVICE_PACKAGE_OVERLAYS := device/qcom/msm8916_64/overlay
+ 
+ #QTIC flag
+--include $(QCPATH)/common/config/qtic-config.mk
++# FTC - disable QTIC
++#-include $(QCPATH)/common/config/qtic-config.mk
++TARGET_USES_QTIC := false
+ 
+ # media_profiles and media_codecs xmls for 8916
+ ifeq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS), true)
+@@ -41,7 +43,8 @@ ifneq (,$(strip $(wildcard $(PRODUCT_RENDERING_ENGINE_REVLIB))))
+ endif
+ endif
+ 
+-PRODUCT_BOOT_JARS += qcom.fmradio
++#PRODUCT_BOOT_JARS += qcom.fmradio
++PRODUCT_BOOT_JARS += com.qualcomm.ftcrobotcontroller
+ 
+ #PRODUCT_BOOT_JARS += vcard
+ PRODUCT_BOOT_JARS += tcmiface
+@@ -51,7 +54,7 @@ ifneq ($(strip $(QCPATH)),)
+ PRODUCT_BOOT_JARS += com.qti.dpmframework
+ PRODUCT_BOOT_JARS += dpmapi
+ PRODUCT_BOOT_JARS += oem-services
+-PRODUCT_BOOT_JARS += com.qti.location.sdk
++#PRODUCT_BOOT_JARS += com.qti.location.sdk
+ endif
+ 
+ PRODUCT_BOOT_JARS += WfdCommon
+@@ -84,10 +87,9 @@ PRODUCT_COPY_FILES += \
+     device/qcom/msm8916_32/sound_trigger_mixer_paths_wcd9306.xml:system/etc/sound_trigger_mixer_paths_wcd9306.xml \
+     device/qcom/msm8916_32/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
+     device/qcom/msm8916_64/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
+-    device/qcom/msm8916_64/bootanimation.zip:system/media/bootanimation.zip
+ 
+ # Boot animation
+-PRODUCT_COPY_FILES += \
++#PRODUCT_COPY_FILES += \
+     device/qcom/msm8916_64/bootanimation.zip:system/media/bootanimation.zip
+ 
+ # MIDI feature
+

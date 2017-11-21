@@ -1,0 +1,103 @@
+--- a/APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/packages/services/Telephony/src/com/android/services/telephony/TelecomAccountRegistry.java
++++ b/APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/packages/services/Telephony/src/com/android/services/telephony/TelecomAccountRegistry.java
+@@ -282,8 +282,10 @@ final class TelecomAccountRegistry {
+         @Override
+         public void onSubscriptionsChanged() {
+             // Any time the SubscriptionInfo changes...rerun the setup
+-            tearDownAccounts();
+-            setupAccounts();
++            // FTC - Disable calls to setupAccounts due to crash on missing
++            //       com.android.internal.telephony.IExtTelephony
++            //tearDownAccounts();
++            //setupAccounts();
+         }
+     };
+ 
+@@ -292,8 +294,8 @@ final class TelecomAccountRegistry {
+         public void onServiceStateChanged(ServiceState serviceState) {
+             int newState = serviceState.getState();
+             if (newState == ServiceState.STATE_IN_SERVICE && mServiceState != newState) {
+-                tearDownAccounts();
+-                setupAccounts();
++                //tearDownAccounts();
++                //setupAccounts();
+             }
+             mServiceState = newState;
+         }
+--- a/APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/device/qcom/common/rootdir/etc/init.qcom.post_boot.sh
++++ b/APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/device/qcom/common/rootdir/etc/init.qcom.post_boot.sh
+@@ -1497,3 +1497,6 @@ case "$target" in
+         echo $oem_version > /sys/devices/soc0/image_crm_version
+         ;;
+ esac
++
++# FTCAndroid: turn Wifi on
++svc wifi enable
+--- a/APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/device/qcom/common/rootdir/etc/init.qcom.rc
++++ bAPQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/device/qcom/common/rootdir/etc/init.qcom.rc
+@@ -860,20 +860,23 @@ service profiler_daemon /system/bin/profiler_daemon
+     group root
+     disabled
+ 
+-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+-    class late_start
+-    disabled
+-
+-service fuse_uicc0 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/uicc0 /storage/uicc0
+-    class late_start
+-
+-service fuse_uicc1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/uicc1 /storage/uicc1
+-    class late_start
+-    disabled
+-
+-service fuse_usbotg /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/usbotg /storage/usbotg
+-    class late_start
+-    disabled
++# FIX
++# /system/bin/sdcard is now called on demand by vold when needed
++#
++#service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
++#    class late_start
++#    disabled
++#
++#service fuse_uicc0 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/uicc0 /storage/uicc0
++#    class late_start
++#
++#service fuse_uicc1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/uicc1 /storage/uicc1
++#    class late_start
++#    disabled
++#
++#service fuse_usbotg /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/usbotg /storage/usbotg
++#    class late_start
++#    disabled
+ 
+ service hcidump /system/bin/sh /system/etc/hcidump.sh
+     user bluetooth
+--- a/APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/device/qcom/msm8916_64/init.target.rc
++++ b/APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/device/qcom/msm8916_64/init.target.rc
+@@ -247,7 +247,7 @@ service per_mgr /system/bin/pm-service
+     user system
+     group system net_raw
+ 
+-service adsprpcd /system/bin/adsprpcd
+-   class main
+-   user media
+-   group media
++#service adsprpcd /system/bin/adsprpcd
++#   class main
++#   user media
++#   group media
+--- a/APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/frameworks/opt/telephony/src/java/com/android/internal/telephony/TelephonyPluginDelegate.java
++++ b/APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/frameworks/opt/telephony/src/java/com/android/internal/telephony/TelephonyPluginDelegate.java
+@@ -66,8 +66,9 @@ public class TelephonyPluginDelegate {
+ 
+     public static void init(Context context) {
+         if (sMe == null) {
+-            String fullClsName = context.getResources()
+-                .getString(R.string.telephony_plugin_class_name);
++            // Avoid crash due to missing com.qti.internal.telephony.QtiTelephonyPlugin
++            //String fullClsName = context.getResources()
++            String fullClsName = null;
+             String libPath = context.getResources().getString(R.string.telephony_plugin_lib_path);
+ 
+             PathClassLoader classLoader = new PathClassLoader(libPath,
