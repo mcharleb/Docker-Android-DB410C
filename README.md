@@ -3,6 +3,11 @@
 Files to create a Docker image for building Android for Dragonboard 410C.
 This is an Android Marshmallow based build and requires Ubuntu 14.04 to build it.
 
+```
+git clone https://github.com/mcharleb/Docker-Android-DB410C.git
+cd Docker-Android-DB410C
+```
+
 ## Prerequisites
 
 Download the BSP zip file
@@ -60,3 +65,50 @@ You can now iteratively work on an application and recompile it:
 cd packages/apps/OnBootTestApp
 mm
 ```
+## Using a Ubuuntu 14.04 VM
+
+If you are using a Ubuntu 14.04 on Windows or Mac, you don't need the Docker image.
+Use the following instructions:
+
+- Make sure all the packages in Dockerfile are installed in your vm
+```
+sudo dpkg --add-architecture i386
+sudo apt install \
+		bzip2 \
+		ca-certificates \
+		openjdk-7-jdk-headless \
+		sudo \
+		unzip \
+		vim-common \
+		wget \
+		xsltproc \
+		git \
+		ccache \
+		automake \
+		lzop \
+		bison \
+		gperf \
+		build-essential \
+		zip \
+		curl \
+		zlib1g-dev \
+		zlib1g-dev:i386 \
+		g++-multilib \
+		python-networkx \
+		libxml2-utils \
+		bzip2 \
+		libbz2-dev \
+		libbz2-1.0 \
+		patch \
+		genisoimage \
+		rsync \
+		bc
+```
+- Clone this repo as above and follow the prerequisites step
+- No need to build or enter the docker image
+- Create a soft link to /opt/android
+```
+sudo ln -s `pwd` /opt/android
+cd /opt/android
+```
+- Follow the instructions above to add additional packages and build
