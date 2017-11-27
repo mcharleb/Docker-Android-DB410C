@@ -1,6 +1,7 @@
 fetch.sh
-build.sh
+build-docker-image.sh
 run.sh
+reflash.sh
 patches/
 linux_android_board_support_package_vla.br.1.2.7-01010-8x16.0-4/
 linux_android_board_support_package_vla.br_.1.2.7-01010-8x16.0-4.zip
