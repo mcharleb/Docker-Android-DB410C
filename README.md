@@ -46,7 +46,7 @@ Now you are in the docker image.
 pushd /opt/android/APQ8016_410C_LA.BR.1.2.7-01010-8x16.0_6.0.1_Marsh_Mallo_P2/packages/apps
 git clone https://github.com/mcharleb/OnBootTestApp.git
 popd
-patch -n -p1 < patches/msm8916_64.patch
+patch -N -p1 < patches/msm8916_64.patch
 ```
 
 ## Build Android
